@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: #fff;
+}
+
+.page-content {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  padding: 32px 24px;
+}
+
+.auth-card h1 {
+  font-size: 1.75rem;
+  margin-bottom: 8px;
+}
+
+.auth-descricao {
+  color: #b3b3b3;
+  margin-bottom: 24px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo label {
+  font-size: 14px;
+  color: #d0d0d0;
+}
+
+.campo input {
+  background-color: #242424;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #fff;
+  font-size: 15px;
+}
+
+.campo input::placeholder {
+  color: #777;
+}
+
+.campo input:focus {
+  outline: 2px solid #1db954;
+  outline-offset: 1px;
+}
+
+.campo input.input-erro {
+  border-color: #e5534b;
+}
+
+.mensagem-erro {
+  color: #ff7b72;
+  font-size: 13px;
+}
+
+.dica {
+  color: #8b8b8b;
+  font-size: 12px;
+  margin-top: -8px;
+}
+
+.alerta {
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.alerta-erro {
+  background-color: rgba(229, 83, 75, 0.15);
+  border: 1px solid #e5534b;
+  color: #ffb4ae;
+}
+
+.alerta-sucesso {
+  background-color: rgba(29, 185, 84, 0.15);
+  border: 1px solid #1db954;
+  color: #9ee6b5;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.15s, opacity 0.15s;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: #1db954;
+  color: #000;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #1ed760;
+}
+
+.btn-secondary {
+  background-color: #333;
+  color: #fff;
+  margin-top: 16px;
+}
+
+.auth-rodape {
+  margin-top: 20px;
+  text-align: center;
+  color: #b3b3b3;
+  font-size: 14px;
+}
+
+.auth-rodape a {
+  color: #1db954;
+}

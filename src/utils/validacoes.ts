@@ -1,0 +1,41 @@
+export function somenteNumeros(valor: string): string {
+    return valor.replace(/\D/g, "");
+}
+
+export function formatarCpf(valor: string): string {
+    const numeros = somenteNumeros(valor).slice(0, 11);
+
+    return numeros
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+}
+
+function calcularDigito(base: string, pesoInicial: number): number {
+    let soma = 0;
+    for (let i = 0; i < base.length; i++) {
+        soma += Number(base[i]) * (pesoInicial - i);
+    }
+    const resto = (soma * 10) % 11;
+    return resto === 10 ? 0 : resto;
+}
+
+// Validação de CPF
+export function cpfValido(valor: string): boolean {
+    const cpf = somenteNumeros(valor);
+
+    if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+        return false;
+    }
+
+    return calcularDigito(cpf.slice(0, 9), 10) === Number(cpf[9])
+        && calcularDigito(cpf.slice(0, 10), 11) === Number(cpf[10]);
+}
+
+const FORMATO_EMAIL = /^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*\.[a-z]{2,}$/;
+
+// Validação de email
+export function emailValido(valor: string): boolean {
+    const email = valor.trim().toLowerCase();
+    return email.length <= 254 && FORMATO_EMAIL.test(email) && !email.includes("..");
+}
