@@ -1,6 +1,6 @@
-# Frontend - Cadastro de Usuário
+# Livraria Entre Páginas - Frontend
 
-React + TypeScript + Vite.
+Interface da livraria virtual feita com React + TypeScript + Vite. A proposta do projeto e o checklist da rubrica ficam no repositório `backend`.
 
 ## Como rodar
 
