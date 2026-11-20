@@ -89,7 +89,10 @@ h1 {
   color: #d0d0d0;
 }
 
-.campo input {
+.campo input,
+.campo select,
+.campo textarea {
+  font-family: inherit;
   background-color: var(--campo);
   border: 1px solid var(--borda);
   border-radius: 8px;
@@ -102,12 +105,14 @@ h1 {
   color: #777;
 }
 
-.campo input:focus {
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
   outline: 2px solid var(--destaque);
   outline-offset: 1px;
 }
 
-.campo input.input-erro {
+.campo .input-erro {
   border-color: var(--erro);
 }
 
@@ -317,6 +322,228 @@ h1 {
   }
 }
 
+/* Listagens e formulários */
+
+.cabecalho-pagina {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.filtros {
+  max-width: 280px;
+  margin-bottom: 16px;
+}
+
+.vazio {
+  color: var(--texto-suave);
+  padding: 24px 0;
+}
+
+.tabela-container {
+  overflow-x: auto;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--superficie);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabela th,
+.tabela td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--borda);
+}
+
+.tabela th {
+  color: var(--texto-suave);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.acoes-linha {
+  display: flex;
+  gap: 16px;
+}
+
+.link-acao {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 14px;
+  color: var(--destaque);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.link-perigo {
+  color: #ff7b72;
+}
+
+.paginacao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+  color: var(--texto-suave);
+  font-size: 14px;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.linha-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.acoes-formulario {
+  display: flex;
+  gap: 12px;
+}
+
+.acoes-formulario .btn-secundario {
+  padding: 12px 16px;
+  font-size: 15px;
+}
+
+/* Catálogo */
+
+.grade-livros {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.livro-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background-color: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+}
+
+.livro-capa {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.livro-capa-vazia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--texto-suave);
+  background: linear-gradient(160deg, #2a2a2a, #1a1a1a);
+}
+
+.livro-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.livro-info h3 {
+  font-size: 1rem;
+}
+
+.livro-categoria {
+  color: var(--destaque);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.livro-autor,
+.livro-estoque {
+  color: var(--texto-suave);
+  font-size: 14px;
+}
+
+.livro-preco {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.esgotado {
+  color: #ff7b72;
+}
+
+/* Pedidos */
+
+.linha-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background-color: var(--superficie);
+  border-radius: 8px;
+}
+
+.linha-item .linha-campos {
+  grid-template-columns: 3fr 1fr;
+}
+
+.linha-item .link-acao {
+  align-self: flex-start;
+}
+
+.resumo-total {
+  font-size: 1.1rem;
+}
+
+.formulario-status {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.status {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: var(--borda);
+}
+
+.status-pago,
+.status-entregue {
+  background-color: rgba(29, 185, 84, 0.2);
+  color: #9ee6b5;
+}
+
+.status-enviado {
+  background-color: rgba(88, 166, 255, 0.2);
+  color: #a5d0ff;
+}
+
+.status-cancelado {
+  background-color: rgba(229, 83, 75, 0.2);
+  color: #ffb4ae;
+}
+
 @media (max-width: 600px) {
   .cabecalho {
     padding: 12px 16px;
@@ -325,5 +552,15 @@ h1 {
 
   .usuario-logado span {
     display: none;
+  }
+
+  .linha-campos,
+  .linha-item .linha-campos {
+    grid-template-columns: 1fr;
+  }
+
+  .tabela th,
+  .tabela td {
+    padding: 10px;
   }
 }
