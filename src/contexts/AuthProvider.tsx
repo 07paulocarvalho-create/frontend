@@ -13,7 +13,6 @@ export function AuthProvider({ children }: Props) {
     const [usuario, setUsuario] = useState<Usuario | null>(null);
     const [carregando, setCarregando] = useState(() => Boolean(lerToken()));
 
-    // Ao abrir o site com um token salvo, busca os dados de quem está logado
     useEffect(() => {
         if (!lerToken()) {
             return;

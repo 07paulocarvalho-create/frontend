@@ -51,7 +51,7 @@ export type Pedido = {
     criadoEm: string;
 }
 
-// Mesmo formato de paginação devolvido pela API
+// Paginação das listagens
 export type Pagina<T> = {
     itens: T[];
     pagina: number;

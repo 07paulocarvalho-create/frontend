@@ -5,7 +5,6 @@ import { errosPorCampo, type ErrosFormulario } from "../utils/formulario";
 
 type EventoCampo = ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
 
-// Estado, validação e erros da API de um formulário
 export function useFormulario<F extends Record<string, string>>(inicial: F) {
     const [form, setForm] = useState<F>(inicial);
     const [erros, setErros] = useState<ErrosFormulario<F>>({});
@@ -38,7 +37,6 @@ export function useFormulario<F extends Record<string, string>>(inicial: F) {
         setErros(errosApi as ErrosFormulario<F>);
     }
 
-    // Valida, envia e mostra os erros da API, controlando o botão de salvar
     async function enviar<S>(schema: ZodType<S>, acao: (dados: S) => Promise<void>) {
         const dados = validar(schema);
         if (!dados) {

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { tratarErroApi } from "../api/erros";
 import { excluir } from "../api/recursos";
 
-// Confirma, exclui e mostra o erro da API (por exemplo, registro com vínculos)
 export function useExclusao(caminho: string, aoExcluir: () => void) {
     const [erro, setErro] = useState("");
 

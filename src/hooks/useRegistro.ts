@@ -8,7 +8,6 @@ type Resultado<T> = {
     erro?: string;
 }
 
-// Busca um registro para a tela de edição; sem id, é um cadastro novo
 export function useRegistro<T>(caminho: string, id?: string) {
     const [resultado, setResultado] = useState<Resultado<T>>({});
 

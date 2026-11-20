@@ -13,7 +13,6 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
-// Sessão expirada: limpa o token e volta para o login
 api.interceptors.response.use(
     (resposta) => resposta,
     (erro) => {
