@@ -1,5 +1,29 @@
 import axios from "axios";
+import { lerToken, removerToken } from "./token";
 
 export const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL ?? "http://localhost:3000"
 });
+
+api.interceptors.request.use((config) => {
+    const token = lerToken();
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+});
+
+// Sessão expirada: limpa o token e volta para o login
+api.interceptors.response.use(
+    (resposta) => resposta,
+    (erro) => {
+        const tinhaToken = Boolean(erro.config?.headers?.Authorization);
+
+        if (erro.response?.status === 401 && tinhaToken) {
+            removerToken();
+            window.location.assign("/login?sessao=expirada");
+        }
+
+        return Promise.reject(erro);
+    }
+);

@@ -1,35 +1,20 @@
 import { z } from "zod";
-import { cpfValido, emailValido } from "../utils/validacoes";
+import { emailValido } from "../utils/validacoes";
+import { campoConfirmarSenha, campoCpf, campoNome, campoSenha, erroSenhasDiferentes, senhasConferem } from "./campos";
 
 // Campos obrigatórios: nome, email, senha, CPF
 export const cadastroSchema = z
     .object({
-        nome: z
-            .string()
-            .trim()
-            .min(1, "O nome é obrigatório")
-            .min(3, "O nome deve ter no mínimo 3 caracteres")
-            .max(100, "O nome deve ter no máximo 100 caracteres"),
+        nome: campoNome,
         email: z
             .string()
             .trim()
             .min(1, "O email é obrigatório")
             .refine(emailValido, "Email inválido"),
-        cpf: z
-            .string()
-            .min(1, "O CPF é obrigatório")
-            .refine(cpfValido, "CPF inválido"),
-        senha: z
-            .string()
-            .min(1, "A senha é obrigatória"),
-        confirmarSenha: z
-            .string()
-            .min(1, "Confirme a senha")
+        cpf: campoCpf,
+        senha: campoSenha,
+        confirmarSenha: campoConfirmarSenha
     })
-    // Verificação dupla de senha
-    .refine((dados) => dados.senha === dados.confirmarSenha, {
-        message: "As senhas não conferem",
-        path: ["confirmarSenha"]
-    });
+    .refine(senhasConferem, erroSenhasDiferentes);
 
 export type CadastroForm = z.infer<typeof cadastroSchema>;

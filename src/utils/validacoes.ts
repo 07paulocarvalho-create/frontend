@@ -32,6 +32,31 @@ export function cpfValido(valor: string): boolean {
         && calcularDigito(cpf.slice(0, 10), 11) === Number(cpf[10]);
 }
 
+export type NivelSenha = "fraca" | "media" | "forte";
+
+const CRITERIOS_SENHA = [
+    { regra: (s: string) => s.length >= 8, descricao: "8 caracteres" },
+    { regra: (s: string) => /[a-z]/.test(s), descricao: "letra minúscula" },
+    { regra: (s: string) => /[A-Z]/.test(s), descricao: "letra maiúscula" },
+    { regra: (s: string) => /\d/.test(s), descricao: "número" },
+    { regra: (s: string) => /[^A-Za-z0-9]/.test(s), descricao: "caractere especial" },
+];
+
+// Validação de nível de senha (mesmas regras da API)
+export function avaliarSenha(senha: string): { nivel: NivelSenha; pendencias: string[] } {
+    const pendencias = CRITERIOS_SENHA.filter((c) => !c.regra(senha)).map((c) => c.descricao);
+    const atendidos = CRITERIOS_SENHA.length - pendencias.length;
+
+    let nivel: NivelSenha = "fraca";
+    if (atendidos === CRITERIOS_SENHA.length) {
+        nivel = "forte";
+    } else if (atendidos >= 3) {
+        nivel = "media";
+    }
+
+    return { nivel, pendencias };
+}
+
 const FORMATO_EMAIL = /^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*\.[a-z]{2,}$/;
 
 // Validação de email
